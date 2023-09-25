@@ -4,7 +4,7 @@
         "es2021": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "prettier"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -13,5 +13,7 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+        "no-unused-vars": "warn",
+        "no-console": "off"
     }
 }
