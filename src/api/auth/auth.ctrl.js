@@ -83,4 +83,11 @@ export const check = async (ctx) => {
     }
     ctx.body = user;
 };
-export const logout = async (ctx) => {};
+
+/*  로그아웃 구현
+    POST /api/auth/logout
+*/
+export const logout = async (ctx) => {
+    ctx.cookies.set('access_token');
+    ctx.status = 204; // No Content
+};
