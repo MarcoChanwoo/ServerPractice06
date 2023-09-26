@@ -51,5 +51,40 @@ export const read = async (ctx) => {
         ctx.throw(500, e);
     }
 };
-export const remove = (ctx) => {};
-export const update = (ctx) => {};
+
+/*  데이터 삭제
+    DELETE /api/posts/:id
+*/
+export const remove = async (ctx) => {
+    const { id } = ctx.params;
+    try {
+        await Post.findByIdAndRemove(id).exec();
+        ctx.status = 204; // No Content
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+};
+
+/*  데이터 수정
+    PATCH /api/posts/:id
+    {
+        title: 수정,
+        body: 수정 내용,
+        tags: [수정, 태그2]
+    }
+*/
+export const update = async (ctx) => {
+    const { id } = ctx.params;
+    try {
+        const post = await Post.findByIdAndUpdate(id, ctx.request.body, {
+            new: true,
+        }).exec();
+        if (!post) {
+            ctx.status = 404;
+            return;
+        }
+        ctx.body = post;
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+};
