@@ -9,4 +9,4 @@
 - Register API
 - (Register / Login / Login check / Logout)
 - JWT
-- Mac OS
+- Mac_OS
